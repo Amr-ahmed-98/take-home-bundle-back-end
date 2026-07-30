@@ -113,6 +113,9 @@ const plans = [
 ];
 
 async function seed() {
+  if (!env.mongoUri) {
+    throw new Error("MONGO_URI environment variable is missing.");
+  }
   await mongoose.connect(env.mongoUri);
   await ProductModel.deleteMany({});
   await PlanModel.deleteMany({});
