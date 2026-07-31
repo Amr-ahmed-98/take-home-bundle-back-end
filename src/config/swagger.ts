@@ -90,6 +90,12 @@ const options: swaggerJsdoc.Options = {
             savings: { type: "number", example: 21.00 },
           },
         },
+        Error: {
+          type: "object",
+          properties: {
+            message: { type: "string", example: "Bundle not found" },
+          },
+        },
         OrderInput: {
           type: "object",
           properties: {
@@ -102,177 +108,16 @@ const options: swaggerJsdoc.Options = {
         },
       },
     },
-    paths: {
-      "/products": {
-        get: {
-          summary: "Retrieve all products",
-          tags: ["Products"],
-          parameters: [
-            {
-              name: "category",
-              in: "query",
-              required: false,
-              schema: { type: "string", enum: ["cameras", "sensors", "accessories"] },
-              description: "Filter products by category",
-            },
-          ],
-          responses: {
-            200: {
-              description: "List of products",
-              content: {
-                "application/json": {
-                  schema: {
-                    type: "array",
-                    items: { $ref: "#/components/schemas/Product" },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-      "/plans": {
-        get: {
-          summary: "Retrieve all available plans",
-          tags: ["Plans"],
-          responses: {
-            200: {
-              description: "List of protection plans",
-              content: {
-                "application/json": {
-                  schema: {
-                    type: "array",
-                    items: { $ref: "#/components/schemas/Plan" },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-      "/bundles": {
-        post: {
-          summary: "Create a new security bundle",
-          tags: ["Bundles"],
-          requestBody: {
-            required: true,
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/Bundle" },
-              },
-            },
-          },
-          responses: {
-            201: {
-              description: "Bundle successfully created",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/Bundle" },
-                },
-              },
-            },
-          },
-        },
-      },
-      "/bundles/calculate": {
-        post: {
-          summary: "Calculate total bundle pricing and savings",
-          tags: ["Bundles"],
-          requestBody: {
-            required: true,
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/Bundle" },
-              },
-            },
-          },
-          responses: {
-            200: {
-              description: "Pricing summary calculation",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/PricingSummary" },
-                },
-              },
-            },
-          },
-        },
-      },
-      "/bundles/{id}": {
-        get: {
-          summary: "Get bundle configuration by ID",
-          tags: ["Bundles"],
-          parameters: [
-            {
-              name: "id",
-              in: "path",
-              required: true,
-              schema: { type: "string" },
-            },
-          ],
-          responses: {
-            200: {
-              description: "Bundle details",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/Bundle" },
-                },
-              },
-            },
-            404: { description: "Bundle not found" },
-          },
-        },
-        put: {
-          summary: "Update existing bundle configuration",
-          tags: ["Bundles"],
-          parameters: [
-            {
-              name: "id",
-              in: "path",
-              required: true,
-              schema: { type: "string" },
-            },
-          ],
-          requestBody: {
-            required: true,
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/Bundle" },
-              },
-            },
-          },
-          responses: {
-            200: {
-              description: "Updated bundle details",
-              content: {
-                "application/json": {
-                  schema: { $ref: "#/components/schemas/Bundle" },
-                },
-              },
-            },
-          },
-        },
-      },
-      "/orders": {
-        post: {
-          summary: "Place an order for a bundle",
-          tags: ["Orders"],
-          requestBody: {
-            required: true,
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/OrderInput" },
-              },
-            },
-          },
-          responses: {
-            201: { description: "Order created successfully" },
-          },
-        },
-      },
-    },
+    tags: [
+      { name: "Products", description: "Browse camera, sensor, and accessory products" },
+      { name: "Plans", description: "Protection plan options" },
+      { name: "Bundles", description: "Create, update, price, and fetch bundles" },
+      { name: "Orders", description: "Place orders for a finished bundle" },
+    ],
   },
-  apis: [],
+  // path docs live as JSDoc (@openapi) comments right above each route,
+  // colocated in the route files themselves - see src/modules/*/*.routes.ts
+  apis: ["src/modules/**/*.routes.ts", "dist/modules/**/*.routes.js"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
