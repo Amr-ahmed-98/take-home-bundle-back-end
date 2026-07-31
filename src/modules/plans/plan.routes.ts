@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { listPlans } from "./plan.controller";
+import { listPlans } from "./plan.controller.js";
 
 export const planRoutes = Router();
 

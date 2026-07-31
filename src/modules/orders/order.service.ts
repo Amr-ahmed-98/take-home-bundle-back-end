@@ -1,4 +1,4 @@
-import { OrderModel } from "./order.model";
+import { OrderModel } from "./order.model.js";
 
 export interface CreateOrderInput {
   bundleId: string;

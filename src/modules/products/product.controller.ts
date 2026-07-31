@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getProducts } from "./product.service";
+import { getProducts } from "./product.service.js";
 
 export async function listProducts(req: Request, res: Response) {
   const category = typeof req.query.category === "string" ? req.query.category : undefined;

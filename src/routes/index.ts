@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { productRoutes } from "../modules/products/product.routes";
-import { planRoutes } from "../modules/plans/plan.routes";
-import { bundleRoutes } from "../modules/bundles/bundle.routes";
-import { orderRoutes } from "../modules/orders/order.routes";
+import { productRoutes } from "../modules/products/product.routes.js";
+import { planRoutes } from "../modules/plans/plan.routes.js";
+import { bundleRoutes } from "../modules/bundles/bundle.routes.js";
+import { orderRoutes } from "../modules/orders/order.routes.js";
 
 export const routes = Router();
 

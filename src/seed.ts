@@ -1,8 +1,8 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-import { env } from "./config/env";
-import { ProductModel } from "./modules/products/product.model";
-import { PlanModel } from "./modules/plans/plan.model";
+import { env } from "./config/env.js";
+import { ProductModel } from "./modules/products/product.model.js";
+import { PlanModel } from "./modules/plans/plan.model.js";
 
 const products = [
   {

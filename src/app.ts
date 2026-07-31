@@ -3,9 +3,9 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import { routes } from "./routes";
-import { errorHandler } from "./middlewares/errorHandler";
-import { setupSwagger } from "./config/swagger";
+import { routes } from "./routes/index.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
+import { setupSwagger } from "./config/swagger.js";
 
 export const app = express();
 

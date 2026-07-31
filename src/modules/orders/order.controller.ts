@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createOrder } from "./order.service";
+import { createOrder } from "./order.service.js";
 
 export async function postOrder(req: Request, res: Response) {
   const order = await createOrder(req.body);

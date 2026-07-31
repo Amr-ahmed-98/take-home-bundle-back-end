@@ -1,8 +1,8 @@
 import { v4 as uuid } from "uuid";
-import { BundleModel } from "./bundle.model";
-import { BundleInput } from "./bundle.types";
-import { ProductModel } from "../products/product.model";
-import { PlanModel } from "../plans/plan.model";
+import { BundleModel } from "./bundle.model.js";
+import { BundleInput } from "./bundle.types.js";
+import { ProductModel } from "../products/product.model.js";
+import { PlanModel } from "../plans/plan.model.js";
 
 export async function createBundle(input: BundleInput) {
   const id = uuid();

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createBundle, upsertBundle, getBundle, calculateBundlePricing } from "./bundle.service";
+import { createBundle, upsertBundle, getBundle, calculateBundlePricing } from "./bundle.service.js";
 
 export async function postBundle(req: Request, res: Response) {
   const bundle = await createBundle(req.body);
