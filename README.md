@@ -34,12 +34,12 @@ Copy the example env file:
 ```bash
 cp .env.example .env
 ```
-Then set in `.env`:
+Then set in `.env` , `.env.example`:
 ```env
 PORT=4000
-MONGO_URI=<your-mongodb-connection-string>
+MONGO_URI=mongodb+srv://amrarthur8_db_user:7DRERJlQ03MxsQ28@taskecomexperts.0senase.mongodb.net/?appName=TaskEcomExperts
 ```
-> Don't commit real credentials in `.env` or `.env.example` — `.env` is gitignored, keep it that way.
+
 
 ### Seed the database
 Populates products and plans:
