@@ -19,55 +19,53 @@ Express.js & TypeScript RESTful API service backed by MongoDB for managing secur
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB instance (local or MongoDB Atlas)
+- Node.js v18+
+- MongoDB instance (MongoDB Atlas)
 
-### Installation
-1. Navigate to the back-end directory:
-   ```bash
-   cd take-home-bundle-builder-backend
-   ```
+### Setup (clean clone)
+```bash
+git clone <repo-url>
+cd take-home-bundle-builder-backend
+npm install
+```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+### Environment variables
+Copy the example env file:
+```bash
+cp .env.example .env
+```
+Then set in `.env`:
+```env
+PORT=4000
+MONGO_URI=<your-mongodb-connection-string>
+```
+> Don't commit real credentials in `.env` or `.env.example` — `.env` is gitignored, keep it that way.
 
-3. Environment Setup:
-   Create a `.env` file in the root of `take-home-bundle-builder-backend`:
-   ```env
-   PORT=4000
-   MONGO_URI=mongodb://localhost:27017/take_home_bundle
-   ```
+### Seed the database
+Populates products and plans:
+```bash
+npm run seed
+```
 
-4. Database Seeding:
-   Seed MongoDB with initial products and plans:
-   ```bash
-   npm run seed
-   ```
+### Run (development)
+```bash
+npm run dev
+```
+API at `http://localhost:4000`.
 
-5. Run Development Server:
-   ```bash
-   npm run dev
-   ```
-   The API server will run at `http://localhost:4000`.
+### Build (production)
+```bash
+npm run build
+```
+Compiles TS to `dist/`.
 
-6. Interactive Swagger Documentation:
-   Open `http://localhost:4000/api-docs` in your browser.
+### Start (production)
+```bash
+npm start
+```
+Runs `dist/server.js` — build first.
 
-7. Build for Production:
-   ```bash
-   npm run build
-   ```
+### API docs (Swagger)
+Local: `http://localhost:4000/api-docs`
+Hosted: https://take-home-bundle-back-end-production.up.railway.app/api-docs/#/
 
-## Deployment on Railway
-
-1. Push your repository to GitHub.
-2. Log in to [Railway.app](https://railway.app) and create a **New Project**.
-3. Select **Deploy from GitHub repo** and pick `take-home-bundle-builder-backend`.
-4. Provision a **MongoDB Database** service in Railway.
-5. In your Railway service settings, add Environment Variables:
-   - `PORT`: `${PORT}` (automatically assigned by Railway)
-   - `MONGO_URI`: `${{MongoDB.MONGO_URL}}` (connected Railway Mongo URL)
-6. Railway will automatically detect Node.js, run `npm run build`, and execute `npm start` (`node dist/server.js`).
-7. Run database seed on Railway via Railway CLI or environment trigger: `npm run seed`.
